@@ -12,10 +12,10 @@
         "ecr:InitiateLayerUpload",
         "ecr:PutImage",
         "ecr:UploadLayerPart",
-        "ecr:DescribeTaskDefinition",
-        "ecr:RegisterTaskDefinition",
-        "ecr:UploadService",
-        "ecr:DescribeService"
+        "ecs:DescribeTaskDefinition",
+        "ecs:RegisterTaskDefinition",
+        "ecs:UploadService",
+        "ecs:DescribeService"
       ],
       "Resource": "*"
     },

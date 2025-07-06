@@ -26,6 +26,7 @@ runs:
         TASK_DEFINITION: ${{ inputs.task-definition }}
       shell: bash
     - uses: aws-actions/amazon-ecs-render-task-definition@v1 #ECSサービスの更新
+      id: render
       with:
         task-definition: ${{ runner.temp }}/task-def.json
         container-name: ${{ inputs.container-name }}

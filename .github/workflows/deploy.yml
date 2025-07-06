@@ -27,4 +27,4 @@ jobs:
           ecs-service: ${{ vars.ECS_SERVICE_NAME }}
           task-definition: ${{ vars.TASK_DEFINITION_NAME }}
           container-name: ${{ vars.CONTAINER_NAME }} 
-          container-image: ${{ steps.build.outputs.container_image }}
+          container-image: ${{ steps.build.outputs.container-image }}
