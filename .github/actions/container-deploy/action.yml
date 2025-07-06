@@ -17,22 +17,21 @@ inputs:
     required: true
     description: コンテナイメージ
 runs:
-  required: true
-using: composite
-steps:
-  - run: |
-      aws ecs describe-task-definition --task-definition "${TASK_DEFINITION}" \
-      --query taskDefinition --output json > "${RUNNER_TEMP}/task-def.json"
-    env:
-      TASK_DEFINITION: ${{ inputs.task-definition }}
-    shell: bash
-  - uses: aws-actions/amazon-ecs-render-task-definition@v1 #ECSサービスの更新
-    with:
-      task-definition: ${{ runner.temp }}/task-def.json
-      container-name: ${{ inputs.container-name }}
-      image: ${{ inputs.container-image }}
-  - uses: aws-actions/amazon-ecs-deploy-task-definition@v1 #ECSサービスの更新
-    with:
-      cluster: ${{ inputs.ecs-cluster }} #ECSクラスター
-      service: ${{ inputs.ecs-service }} #ECSサービス
-      task-definition: ${{ steps.render.outputs.task-definition }} #タスク定義
+  using: composite
+  steps:
+    - run: |
+        aws ecs describe-task-definition --task-definition "${TASK_DEFINITION}" \
+        --query taskDefinition --output json > "${RUNNER_TEMP}/task-def.json"
+      env:
+        TASK_DEFINITION: ${{ inputs.task-definition }}
+      shell: bash
+    - uses: aws-actions/amazon-ecs-render-task-definition@v1 #ECSサービスの更新
+      with:
+        task-definition: ${{ runner.temp }}/task-def.json
+        container-name: ${{ inputs.container-name }}
+        image: ${{ inputs.container-image }}
+    - uses: aws-actions/amazon-ecs-deploy-task-definition@v1 #ECSサービスの更新
+      with:
+        cluster: ${{ inputs.ecs-cluster }} #ECSクラスター
+        service: ${{ inputs.ecs-service }} #ECSサービス
+        task-definition: ${{ steps.render.outputs.task-definition }} #タスク定義

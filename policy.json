@@ -9,7 +9,7 @@
         "ecr:BatchCheckLayerAvailability",
         "ecr:CompleteLayerUpload",
         "ecr:GetDownloadUrlForLayer",
-        "ecr:InitialLayerUpload",
+        "ecr:InitiateLayerUpload",
         "ecr:PutImage",
         "ecr:UploadLayerPart",
         "ecr:DescribeTaskDefinition",
